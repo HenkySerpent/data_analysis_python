@@ -108,3 +108,28 @@ print(p)
 
 PlotPolly(p, x, y, 'highway-mpg')
 
+#Multivariate Polynomial function 
+
+from sklearn.preprocessing import PolynomialFeatures
+pr=PolynomialFeatures(degree=2)
+pr
+Z_pr=pr.fit_transform(Z)
+Z.shape
+Z_pr.shape
+
+
+#Pipeline
+
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import StandardScaler
+Input=[('scale',StandardScaler()), ('polynomial', PolynomialFeatures(include_bias=False)), ('model',LinearRegression())]
+pipe=Pipeline(Input)
+pipe
+
+pipe.fit(Z,y)
+
+ypipe=pipe.predict(Z)
+ypipe[0:4]
+
+
+
